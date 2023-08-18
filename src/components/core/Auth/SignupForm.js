@@ -1,12 +1,21 @@
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
 import { toast } from "react-hot-toast"
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
+import { useDispatch } from "react-redux"
+import { useNavigate } from "react-router-dom"
+
+import { sendOtp } from "../../../services/operations/authApi"
+import { setSignupData } from "../../../slices/authSlice"
+import { ACCOUNT_TYPE } from "../../../utils/constants"
 import Tab from "../../common/Tab"
 
-
-const SignupForm = () => {
+function SignupForm() {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  // student or instructor
+  const [accountType, setAccountType] = useState(ACCOUNT_TYPE.STUDENT)
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -17,7 +26,6 @@ const SignupForm = () => {
 
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
-  const [accountType, setAccountType] = useState("Instructor")
 
   const { firstName, lastName, email, password, confirmPassword } = formData
 
@@ -42,6 +50,12 @@ const SignupForm = () => {
       accountType,
     }
 
+    // Setting signup data to state
+    // To be used after otp verification
+    dispatch(setSignupData(signupData))
+    // Send OTP to user for verification
+    dispatch(sendOtp(formData.email, navigate))
+
     // Reset
     setFormData({
       firstName: "",
@@ -50,19 +64,20 @@ const SignupForm = () => {
       password: "",
       confirmPassword: "",
     })
-    setAccountType("Student")
+    setAccountType(ACCOUNT_TYPE.STUDENT)
   }
 
+  // data to pass to Tab component
   const tabData = [
     {
       id: 1,
       tabName: "Student",
-      type: "Student",
+      type: ACCOUNT_TYPE.STUDENT,
     },
     {
       id: 2,
       tabName: "Instructor",
-      type: "Instructor",
+      type: ACCOUNT_TYPE.INSTRUCTOR,
     },
   ]
 
@@ -191,4 +206,5 @@ const SignupForm = () => {
     </div>
   )
 }
+
 export default SignupForm
