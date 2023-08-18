@@ -19,9 +19,12 @@ const ExploreMore = () => {
     );
 
     const setMyCards = (value) => {
+        // to capture which card i clicked
         setCurrentTab(value);
         const result = HomePageExplore.filter((course) => course.tag === value);
+        // to render the ui 
         setCourses(result[0].courses);
+        // to change the ui everytime i select a card
         setCurrentCard(result[0].courses[0].heading);
     };
 

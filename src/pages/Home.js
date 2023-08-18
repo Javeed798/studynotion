@@ -108,6 +108,7 @@ function Home() {
             subheading={
               "Go ahead, give it a try. Our hands-on learning environment means you'll be writing real code from your very first lesson."
             }
+            // passing object in a prop
             ctabtn1={{
               btnText: "Continue Lesson",
               link: "/signup",

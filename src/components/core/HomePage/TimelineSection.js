@@ -55,7 +55,7 @@ const TimelineSection = () => {
                     })}
                 </div>
             <div className={"relative shadow-blue-200"}>
-                <img className={"rounded-md"} src={TimeLineImage} alt="Timeline Image" />
+                <img className={"rounded-md"} src={TimeLineImage} alt="Timeline" />
                 <div className={"absolute translate-x-[-50%] -translate-y-12 left-[50%] bg-caribbeangreen-700 flex flex-row text-white uppercase py-10"}>
                     <div className={"flex flex-row gap-4 items-center border-r border-caribbeangreen-300 px-7"}>
                         <h1 className={"text-3xl font-bold"}>10</h1>

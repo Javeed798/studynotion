@@ -10,7 +10,7 @@ const InstructorSection = () => {
                 <div className="lg:w-[50%]">
                     <img
                         className="shadow-white shadow-[-10px_-10px_0_0]"
-                        src={Instructor} alt="Image Instructor"/>
+                        src={Instructor} alt="Images Instructor"/>
                 </div>
                 <div className={"w-[50%] text-4xl font-semibold flex flex-col"}>
                     Become an <HighlightText text={"Instructor"} />
