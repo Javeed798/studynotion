@@ -5,10 +5,16 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Navbar from './components/common/Navbar';
 import OpenRoute from './components/core/Auth/OpenRoute';
+import PrivateRoute from './components/core/Auth/PrivateRoute';
 import ForgotPassword from './pages/ForgotPassword';
 import UpdatePassword from './pages/UpdatePassword';
+import Error from './pages/Error';
 import VerifyEmail from './pages/VerifyEmail';
 import About from './pages/About';
+import MyProfile from './components/core/Dashboard/MyProfile';
+import Dashboard from './pages/Dashboard';
+import Settings from './components/core/Dashboard/Settings';
+import Contact from './pages/Contact';
 
 function App() {
   return (
@@ -71,7 +77,19 @@ function App() {
           }
         />  
 
+      <Route path="/contact" element={<Contact />} />
 
+
+        <Route 
+          element={<PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>}
+        >
+           <Route path='dashboard/my-profile' element={<MyProfile />} />
+           <Route path='dashboard/settings' element={<Settings />} />
+        </Route>
+
+        <Route path='*' element={<Error />} />
       </Routes>
       </div>
   );
